@@ -917,6 +917,30 @@ footer{
 .devis-sub{font-size:1rem;color:var(--text-dim);line-height:1.7;max-width:480px;margin:0 auto 2rem}
 
 /* ═══ REVEAL ═══ */
+/* ═══ LEGAL PAGES ═══ */
+.legal-page{max-width:860px;margin:0 auto;padding:7rem 1.5rem 5rem}
+.legal-back-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.05);border:1px solid var(--border-2);
+  color:var(--text-dim);font-size:.82rem;font-weight:600;
+  padding:.55rem 1.1rem;border-radius:50px;cursor:pointer;margin-bottom:2.5rem;
+  transition:background var(--dur),color var(--dur);
+}
+.legal-back-btn:hover{background:rgba(255,255,255,.09);color:#fff}
+.legal-page h1{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;letter-spacing:-.04em;margin-bottom:.6rem}
+.legal-page h2{font-size:1.1rem;font-weight:700;color:var(--b2c);margin:2rem 0 .5rem;letter-spacing:-.01em}
+.legal-page h3{font-size:.95rem;font-weight:600;color:var(--text);margin:1.4rem 0 .45rem}
+.legal-page p,.legal-page li{font-size:.88rem;color:var(--text-dim);line-height:1.7;margin-bottom:.55rem}
+.legal-page ul{padding-left:1.25rem;margin-bottom:.8rem}
+.legal-page li{margin-bottom:.3rem}
+.legal-page strong{color:var(--text)}
+.legal-page hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.legal-page .legal-meta{font-family:var(--mono);font-size:.72rem;color:var(--text-muted);letter-spacing:.05em;margin-bottom:2rem}
+.legal-page table{width:100%;border-collapse:collapse;margin:1rem 0 1.5rem;font-size:.82rem}
+.legal-page th{text-align:left;padding:.55rem .75rem;border-bottom:1px solid var(--border-2);color:var(--text);font-weight:600}
+.legal-page td{padding:.5rem .75rem;border-bottom:1px solid var(--border);color:var(--text-dim);vertical-align:top}
+.legal-page tr:last-child td{border-bottom:none}
+
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease), transform .7s var(--ease)}
 .reveal.on{opacity:1;transform:translateY(0)}
 .reveal:nth-child(2){transition-delay:.08s}
@@ -976,7 +1000,7 @@ footer{
   <span class="nav-divider"></span>
   <div class="nav-links">
     <button class="nav-item active" data-page="home" onclick="showPage('home')">Accueil</button>
-    <button class="nav-item" data-page="home-pricing" onclick="showPage('home');scrollToPricing()">Tarifs</button>
+    <button class="nav-item" data-page="home" onclick="showPage('home');scrollToPricing()">Tarifs</button>
     <button class="nav-item" data-page="about" onclick="showPage('about')">Notre histoire</button>
     <button class="nav-item" data-page="contact" onclick="showPage('contact')">Contact</button>
   </div>
@@ -1892,7 +1916,7 @@ footer{
             <input type="checkbox" id="cf-rgpd" name="rgpd" required>
             <label for="cf-rgpd">
               J'accepte que mes données soient utilisées pour me recontacter dans le cadre de ma demande.
-              <a href="#" onclick="showPage('home');return false;" style="color:var(--b2c)">Politique de confidentialité</a>
+              <a href="#" onclick="showPage('confidentialite');return false;" style="color:var(--b2c)">Politique de confidentialité</a>
             </label>
           </div>
           <input type="text" name="_gotcha" style="display:none">
@@ -1938,6 +1962,224 @@ footer{
   </div>
 </div><!-- /page-contact -->
 
+<!-- ════════════════════════════════════════════════
+     PAGE CGU
+═══════════════════════════════════════════════════ -->
+<div id="page-cgu" class="page">
+  <div class="legal-page">
+    <button class="legal-back-btn" onclick="goBack()">← Retour</button>
+    <h1>Conditions Générales d'Utilisation</h1>
+    <p class="legal-meta">Version 1.0-beta &nbsp;·&nbsp; Entrée en vigueur : 14 avril 2026 &nbsp;·&nbsp; Dernière mise à jour : 14 avril 2026</p>
+    <hr>
+
+    <h2>1. Présentation du service</h2>
+    <p><strong>S-OS</strong> (Souchet Operating System) est une plateforme logicielle de supervision énergétique éditée par <strong>Souchet Énergie</strong>, entreprise en cours d'immatriculation au Registre du Commerce et des Sociétés, dont le représentant légal est joignable à l'adresse : <a href="mailto:souchet.os@outlook.fr" style="color:var(--b2c)">souchet.os@outlook.fr</a>.</p>
+    <p>S-OS est actuellement diffusé en <strong>version bêta</strong> sur la plateforme Streamlit Community Cloud, hébergée par Snowflake Inc. sur des serveurs situés aux <strong>États-Unis (région AWS us-east-1)</strong>. Cette localisation emporte des implications spécifiques au regard du Règlement (UE) 2016/679 (RGPD), décrites à l'article 9 des présentes.</p>
+    <p>Le service propose deux profils d'utilisation :</p>
+    <ul>
+      <li><strong>Profil B2C (particuliers)</strong> — Supervision en temps réel de l'installation photovoltaïque d'un foyer, visualisation de la production/consommation, génération de rapports PDF et simulation de bilan économique.</li>
+      <li><strong>Profil B2G (collectivités et entreprises)</strong> — Tableau de bord de pilotage multi-sites, rapports exécutifs PDF et outils d'analyse de performance.</li>
+    </ul>
+    <p>L'accès à S-OS est conditionné à la création d'un compte utilisateur et à l'acceptation sans réserve des présentes CGU.</p>
+    <hr>
+
+    <h2>2. Accès au service et création de compte</h2>
+    <h3>2.1 Conditions d'accès</h3>
+    <p>L'accès à S-OS est réservé aux personnes physiques majeures (18 ans ou plus) ou aux personnes morales dûment habilitées.</p>
+    <h3>2.2 Création de compte</h3>
+    <p>Pour utiliser S-OS, l'utilisateur doit fournir : une adresse e-mail valide, un mot de passe sécurisé, son nom d'affichage et son profil (B2C ou B2G). Le mot de passe est stocké sous forme hachée (bcrypt, coût 12) et n'est jamais accessible en clair.</p>
+    <h3>2.3 Compte démo</h3>
+    <p>Un accès en mode démonstration est disponible sans création de compte. Les données affichées sont des simulations algorithmiques et ne correspondent à aucune installation réelle.</p>
+    <h3>2.4 Sécurité du compte</h3>
+    <p>En cas de suspicion de compromission, contactez immédiatement <a href="mailto:souchet.os@outlook.fr" style="color:var(--b2c)">souchet.os@outlook.fr</a>. Après 5 échecs de connexion consécutifs sur 15 minutes, l'accès est temporairement suspendu.</p>
+    <hr>
+
+    <h2>3. Description des services et fonctionnalités</h2>
+    <h3>3.1 Fonctionnalités communes</h3>
+    <ul>
+      <li>Tableau de bord de supervision énergétique (production, consommation, solde)</li>
+      <li>Connexion aux onduleurs via API (Enphase Enlighten, Fronius Solar API, Huawei FusionSolar) ou mode simulation</li>
+      <li>Génération de rapports PDF horodatés</li>
+      <li>Journal d'accès personnel (conformité RGPD Art. 30)</li>
+      <li>Interface disponible en français</li>
+    </ul>
+    <h3>3.2 Profil B2C</h3>
+    <ul>
+      <li>Visualisation temps réel de la production photovoltaïque</li>
+      <li>Simulation physique (PVGIS Bretagne) en l'absence de connexion onduleur</li>
+      <li>Calcul du taux d'autoconsommation et bilan économique estimé</li>
+      <li>Rapport PDF mensuel téléchargeable</li>
+    </ul>
+    <h3>3.3 Profil B2G</h3>
+    <ul>
+      <li>Pilotage multi-sites et vue d'ensemble du parc</li>
+      <li>Tableau de bord exécutif (PR, IRR estimé, économies CO₂)</li>
+      <li>Rapport exécutif PDF confidentiel avec en-tête personnalisé</li>
+    </ul>
+    <h3>3.4 Évolutions du service</h3>
+    <p>S-OS étant en version bêta, ses fonctionnalités sont susceptibles d'évoluer, d'être modifiées ou supprimées sans préavis.</p>
+    <hr>
+
+    <h2>4. Tarification et conditions financières</h2>
+    <h3>4.1 Phase bêta</h3>
+    <p>Durant la phase bêta, l'accès à S-OS est proposé à titre <strong>gratuit</strong> pour les deux profils. Aucun moyen de paiement n'est requis.</p>
+    <h3>4.2 Passage en version commerciale</h3>
+    <p>À l'issue de la phase bêta, des formules payantes pourront être mises en place. Les utilisateurs bêta seront informés par e-mail au moins <strong>30 jours avant</strong> l'entrée en vigueur des nouveaux tarifs et disposeront d'un droit d'opposition.</p>
+    <h3>4.3 Facturation B2G</h3>
+    <p>Pour les collectivités et entreprises, les conditions tarifaires font l'objet d'une négociation individualisée et d'un contrat distinct incluant un DPA (Art. 28 RGPD).</p>
+    <hr>
+
+    <h2>5. Obligations et responsabilités de l'utilisateur</h2>
+    <h3>5.1 Usage licite</h3>
+    <p>Il est notamment interdit :</p>
+    <ul>
+      <li>De tenter d'accéder à des données non autorisées par son compte</li>
+      <li>De procéder à des tests d'intrusion, de fuzzing ou de déni de service</li>
+      <li>De partager ses identifiants de connexion avec des tiers</li>
+      <li>D'utiliser S-OS à des fins concurrentielles, de rétro-ingénierie ou de scraping</li>
+    </ul>
+    <h3>5.2 Exactitude des informations</h3>
+    <p>L'utilisateur est responsable de l'exactitude des informations fournies lors de l'inscription.</p>
+    <h3>5.3 Responsabilité des collectivités (B2G)</h3>
+    <p>La collectivité s'engage à désigner un référent technique et à ne connecter que des installations dont elle est propriétaire ou gestionnaire légitime.</p>
+    <hr>
+
+    <h2>6. Propriété intellectuelle</h2>
+    <p>L'ensemble des éléments composant S-OS (code source, interface, algorithmes, marque) est la propriété exclusive de Souchet Énergie et est protégé par le droit d'auteur. Toute reproduction ou exploitation commerciale est interdite sans accord préalable écrit.</p>
+    <p>Les données énergétiques que l'utilisateur connecte sur S-OS demeurent sa propriété. Souchet Énergie ne revendique aucun droit sur ces données au-delà de ce qui est nécessaire à la fourniture du service.</p>
+    <hr>
+
+    <h2>7. Limitation de responsabilité</h2>
+    <p>S-OS est un outil de <strong>supervision et de visualisation</strong> à vocation informative. Les estimations économiques et projections de rendement sont fournies à titre indicatif et ne constituent pas un conseil professionnel.</p>
+    <p>Souchet Énergie ne garantit pas la disponibilité continue du service, notamment en phase bêta. La responsabilité de Souchet Énergie est limitée aux dommages directs et prévisibles ; les pertes indirectes ou consécutives sont exclues.</p>
+    <hr>
+
+    <h2>8. Durée, résiliation et clôture de compte</h2>
+    <p>Les CGU sont conclues pour une durée indéterminée à compter de la création du compte. L'utilisateur peut clôturer son compte à tout moment en contactant <a href="mailto:souchet.os@outlook.fr" style="color:var(--b2c)">souchet.os@outlook.fr</a>. La suppression des données intervient dans un délai de 30 jours.</p>
+    <p>Souchet Énergie peut suspendre ou clôturer un compte sans préavis en cas de violation des CGU, comportement frauduleux ou décision judiciaire. En cas de cessation définitive du service, les utilisateurs sont informés au moins <strong>30 jours à l'avance</strong>.</p>
+    <hr>
+
+    <h2>9. Données personnelles et transferts hors UE</h2>
+    <p>Le traitement des données personnelles est régi par la <button onclick="showPage('confidentialite')" style="background:none;border:none;color:var(--b2c);cursor:pointer;font-size:inherit;padding:0;text-decoration:underline">Politique de Confidentialité S-OS</button>.</p>
+    <p>La plateforme est hébergée par Streamlit Community Cloud (Snowflake Inc.) sur des serveurs aux <strong>États-Unis (AWS us-east-1)</strong>. Ce transfert est encadré par les <strong>clauses contractuelles types (CCT)</strong> adoptées par la Commission européenne (décision 2021/914).</p>
+    <p>Conformément au RGPD, l'utilisateur dispose de droits d'accès, de rectification, d'effacement, de portabilité, de limitation et d'opposition, exerçables à <a href="mailto:souchet.os@outlook.fr" style="color:var(--b2c)">souchet.os@outlook.fr</a>. En cas de réclamation non résolue : <a href="https://www.cnil.fr" target="_blank" rel="noopener" style="color:var(--b2c)">www.cnil.fr</a>.</p>
+    <hr>
+
+    <h2>10. Dispositions finales</h2>
+    <p>Souchet Énergie peut modifier les CGU à tout moment. L'utilisateur sera informé de toute modification substantielle par e-mail au moins <strong>15 jours avant</strong> son entrée en vigueur. Les présentes CGU sont régies par le <strong>droit français</strong> ; les litiges relèvent de la compétence exclusive des <strong>tribunaux de Paris</strong>.</p>
+    <p style="margin-top:2rem;font-size:.8rem;color:var(--text-muted)">© 2026 Souchet Énergie — Tous droits réservés. S-OS est une marque en cours d'enregistrement.</p>
+  </div>
+</div><!-- /page-cgu -->
+
+<!-- ════════════════════════════════════════════════
+     PAGE CONFIDENTIALITÉ / RGPD
+═══════════════════════════════════════════════════ -->
+<div id="page-confidentialite" class="page">
+  <div class="legal-page">
+    <button class="legal-back-btn" onclick="goBack()">← Retour</button>
+    <h1>Politique de Confidentialité</h1>
+    <p class="legal-meta">Version 1.0-beta &nbsp;·&nbsp; Entrée en vigueur : 14 avril 2026 &nbsp;·&nbsp; Conforme au RGPD (UE) 2016/679 — Art. 13 et 14</p>
+    <hr>
+
+    <h2>1. Responsable du traitement</h2>
+    <p><strong>Souchet Énergie</strong> — Entreprise en cours d'immatriculation<br>
+    Représentant légal : Pierre Souchet<br>
+    E-mail : <a href="mailto:souchet.os@outlook.fr" style="color:var(--b2c)">souchet.os@outlook.fr</a> &nbsp;·&nbsp; Délai de réponse : 5 jours ouvrables</p>
+    <p>Souchet Énergie agit en qualité de <strong>Responsable de traitement (RT)</strong> pour les données des utilisateurs B2C. Pour les utilisateurs B2G, la collectivité est RT ; Souchet Énergie intervient comme sous-traitant (Art. 28 RGPD) dans le cadre d'un DPA.</p>
+    <hr>
+
+    <h2>2. Données collectées et finalités</h2>
+    <h3>2.1 Données d'inscription</h3>
+    <table>
+      <tr><th>Donnée</th><th>Finalité</th><th>Base légale</th></tr>
+      <tr><td>Adresse e-mail</td><td>Identifiant de connexion, communication</td><td>Art. 6.1.b — exécution du contrat</td></tr>
+      <tr><td>Nom d'affichage</td><td>Personnalisation de l'interface</td><td>Art. 6.1.b</td></tr>
+      <tr><td>Mot de passe (haché bcrypt)</td><td>Authentification sécurisée</td><td>Art. 6.1.b</td></tr>
+      <tr><td>Profil (B2C / B2G)</td><td>Orientation vers le tableau de bord adapté</td><td>Art. 6.1.b</td></tr>
+      <tr><td>Date d'inscription</td><td>Gestion du cycle de vie du compte</td><td>Art. 6.1.b</td></tr>
+    </table>
+    <p>Le mot de passe n'est <strong>jamais stocké en clair</strong> (bcrypt, coût 12).</p>
+    <h3>2.2 Données de supervision énergétique</h3>
+    <table>
+      <tr><th>Donnée</th><th>Finalité</th><th>Base légale</th></tr>
+      <tr><td>Production photovoltaïque (W, Wh)</td><td>Affichage tableau de bord, calculs de performance</td><td>Art. 6.1.b</td></tr>
+      <tr><td>Consommation électrique (W)</td><td>Calcul du taux d'autoconsommation et bilan économique</td><td>Art. 6.1.b</td></tr>
+      <tr><td>Identifiants API onduleur</td><td>Connexion à l'installation de l'utilisateur</td><td>Art. 6.1.b</td></tr>
+    </table>
+    <p>Ces données ne font l'objet d'aucune analyse commerciale, cession ou exploitation publicitaire.</p>
+    <h3>2.3 Journalisation (audit log)</h3>
+    <table>
+      <tr><th>Donnée</th><th>Finalité</th><th>Base légale</th></tr>
+      <tr><td>Horodatage de connexion (UTC)</td><td>Traçabilité et sécurité</td><td>Art. 6.1.f — intérêt légitime</td></tr>
+      <tr><td>Action réalisée</td><td>Détection des comportements anormaux</td><td>Art. 6.1.f</td></tr>
+      <tr><td>Empreinte IP (SHA-256, 12 caractères)</td><td>Lutte contre la fraude</td><td>Art. 6.1.f</td></tr>
+    </table>
+    <p><strong>L'adresse IP brute et l'e-mail en clair ne sont jamais stockés dans les journaux.</strong> Seules des empreintes SHA-256 tronquées (12 caractères) sont enregistrées.</p>
+    <hr>
+
+    <h2>3. Durées de conservation</h2>
+    <table>
+      <tr><th>Catégorie</th><th>Durée</th><th>Justification</th></tr>
+      <tr><td>Données de compte</td><td>3 ans après la dernière connexion</td><td>Gestion contractuelle</td></tr>
+      <tr><td>Données énergétiques</td><td>2 ans glissants</td><td>Analyse multi-saisons</td></tr>
+      <tr><td>Journaux d'audit</td><td>1 an</td><td>Sécurité, RGPD Art. 30</td></tr>
+      <tr><td>Données de facturation</td><td>10 ans</td><td>Obligation comptable (Art. L123-22 C. com.)</td></tr>
+      <tr><td>Mode démo</td><td>Aucune</td><td>Données non personnelles</td></tr>
+    </table>
+    <p>En cas de clôture de compte, les données sont supprimées dans un délai de <strong>30 jours</strong>.</p>
+    <hr>
+
+    <h2>4. Destinataires et sous-traitants</h2>
+    <table>
+      <tr><th>Sous-traitant</th><th>Rôle</th><th>Localisation</th><th>Garanties</th></tr>
+      <tr><td><strong>Streamlit Community Cloud</strong> (Snowflake Inc.)</td><td>Hébergement de l'application</td><td>États-Unis — AWS us-east-1</td><td>CCT (décision 2021/914)</td></tr>
+      <tr><td><strong>Supabase Inc.</strong> (si activé)</td><td>Base de données</td><td>Irlande — eu-west-1</td><td>DPA, Art. 28 RGPD</td></tr>
+    </table>
+    <p>Souchet Énergie ne vend, ne loue et ne cède aucune donnée personnelle à des tiers à des fins commerciales ou publicitaires.</p>
+    <hr>
+
+    <h2>5. Transferts hors Union Européenne</h2>
+    <p>L'application S-OS est hébergée sur <strong>Streamlit Community Cloud</strong> (Snowflake Inc., San Mateo, Californie) — serveurs en région <strong>AWS us-east-1 (Virginie du Nord)</strong>. Les États-Unis ne bénéficient pas d'une décision d'adéquation de la Commission européenne (Art. 45 RGPD).</p>
+    <p>Ce transfert est réalisé sur le fondement des <strong>clauses contractuelles types (CCT)</strong> adoptées par la Commission européenne (décision 2021/914), auxquelles Snowflake Inc. adhère contractuellement. Une copie des CCT applicables est disponible sur demande à <a href="mailto:souchet.os@outlook.fr" style="color:var(--b2c)">souchet.os@outlook.fr</a>.</p>
+    <p>Lorsque Supabase est activé, les données sont hébergées en <strong>Irlande (eu-west-1)</strong>, au sein de l'UE, sans transfert hors EEE.</p>
+    <hr>
+
+    <h2>6. Vos droits (RGPD)</h2>
+    <table>
+      <tr><th>Droit</th><th>Description</th><th>Comment l'exercer</th></tr>
+      <tr><td><strong>Accès</strong> (Art. 15)</td><td>Obtenir une copie de vos données</td><td>Demande par e-mail</td></tr>
+      <tr><td><strong>Rectification</strong> (Art. 16)</td><td>Corriger des données inexactes</td><td>Demande par e-mail</td></tr>
+      <tr><td><strong>Effacement</strong> (Art. 17)</td><td>Droit à l'oubli — délai 30 jours</td><td>Demande par e-mail</td></tr>
+      <tr><td><strong>Portabilité</strong> (Art. 20)</td><td>Recevoir vos données en format structuré</td><td>Fichier JSON sur demande</td></tr>
+      <tr><td><strong>Limitation</strong> (Art. 18)</td><td>Suspendre temporairement le traitement</td><td>Demande par e-mail</td></tr>
+      <tr><td><strong>Opposition</strong> (Art. 21)</td><td>S'opposer à un traitement sur intérêt légitime</td><td>Demande par e-mail</td></tr>
+    </table>
+    <p><strong>Contact DPO :</strong> <a href="mailto:souchet.os@outlook.fr" style="color:var(--b2c)">souchet.os@outlook.fr</a> — réponse sous 30 jours calendaires.</p>
+    <p><strong>Réclamation non résolue :</strong> <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener" style="color:var(--b2c)">CNIL — www.cnil.fr/fr/plaintes</a> &nbsp;·&nbsp; 3 Place de Fontenoy — TSA 80715 — 75334 Paris Cedex 07</p>
+    <hr>
+
+    <h2>7. Sécurité des données</h2>
+    <p><strong>Mesures techniques :</strong></p>
+    <ul>
+      <li>Hachage des mots de passe avec bcrypt (coût 12), sans stockage en clair</li>
+      <li>Empreinte cryptographique SHA-256 des adresses IP dans les journaux — jamais de stockage en clair</li>
+      <li>Limitation des tentatives de connexion (5 / 15 min) avec journalisation</li>
+      <li>Transport des données via HTTPS (TLS) exclusivement</li>
+      <li>Séparation stricte des données B2C et B2G dans l'architecture</li>
+    </ul>
+    <p>En cas de violation de données à caractère personnel, Souchet Énergie s'engage à notifier la CNIL dans un délai de <strong>72 heures</strong> (Art. 33 RGPD) et à informer les utilisateurs concernés sans délai injustifié (Art. 34 RGPD).</p>
+    <hr>
+
+    <h2>8. Cookies et traceurs</h2>
+    <p>S-OS n'utilise <strong>aucun cookie de traçage publicitaire</strong> ni outil d'analyse comportementale tiers. Streamlit Community Cloud peut déposer des cookies techniques strictement nécessaires à la gestion de session (exemptés de consentement, directive ePrivacy / Art. 82 loi Informatique et Libertés). Aucune donnée de navigation n'est croisée avec des bases tierces à des fins publicitaires.</p>
+    <hr>
+
+    <h2>9. Modifications de cette politique</h2>
+    <p>Toute modification substantielle sera notifiée aux utilisateurs inscrits par e-mail au moins <strong>15 jours avant</strong> son entrée en vigueur. La version en vigueur est toujours accessible sur la plateforme et sur demande à <a href="mailto:souchet.os@outlook.fr" style="color:var(--b2c)">souchet.os@outlook.fr</a>.</p>
+    <p style="margin-top:2rem;font-size:.8rem;color:var(--text-muted)">© 2026 Souchet Énergie — Politique de Confidentialité S-OS v1.0-beta<br>Document établi conformément au RGPD (UE) 2016/679, à la loi n° 78-17 du 6 janvier 1978 modifiée et aux lignes directrices de la CNIL.</p>
+  </div>
+</div><!-- /page-confidentialite -->
+
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-inner">
@@ -1950,19 +2192,19 @@ footer{
       <h4>Produit</h4>
       <a href="#" onclick="showPage('home');return false;">Accueil</a>
       <a href="#" onclick="showPage('home');scrollToPricing();return false;">Tarifs</a>
-      <a href="#" onclick="showPage('home');return false;">Démo</a>
+      <a href="https://s-os-souchet-energie.streamlit.app" target="_blank" rel="noopener noreferrer">Démo</a>
     </div>
     <div class="footer-col">
       <h4>Société</h4>
       <a href="#" onclick="showPage('about');return false;">Notre histoire</a>
       <a href="#" onclick="showPage('contact');return false;">Contact</a>
-      <a href="mailto:souchet.os@outlook.fr">Email</a>
+      <a href="mailto:souchet.os@outlook.fr">souchet.os@outlook.fr</a>
     </div>
     <div class="footer-col">
       <h4>Légal</h4>
-      <a href="CGU_SOS.md">CGU</a>
-      <a href="POLITIQUE_CONFIDENTIALITE_SOS.md">Confidentialité</a>
-      <a href="#">RGPD</a>
+      <a href="#" onclick="showPage('cgu');return false;">CGU</a>
+      <a href="#" onclick="showPage('confidentialite');return false;">Confidentialité</a>
+      <a href="#" onclick="showPage('confidentialite');return false;">RGPD</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1976,15 +2218,23 @@ footer{
   'use strict';
 
   /* ROUTER */
+  var currentPage = 'home';
+  var prevPage = 'home';
   window.showPage = function(name){
+    prevPage = currentPage;
+    currentPage = name;
     document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
     var t = document.getElementById('page-'+name);
     if(t) t.classList.add('active');
+    var legalPages = ['cgu','confidentialite'];
     document.querySelectorAll('.nav-item[data-page]').forEach(function(b){
-      b.classList.toggle('active', b.dataset.page === name);
+      b.classList.toggle('active', legalPages.indexOf(name) === -1 && b.dataset.page === name);
     });
     window.scrollTo({top:0,behavior:'smooth'});
     setTimeout(activateReveal, 80);
+  };
+  window.goBack = function(){
+    showPage(prevPage && prevPage !== currentPage ? prevPage : 'home');
   };
   window.scrollToPricing = function(){
     setTimeout(function(){
