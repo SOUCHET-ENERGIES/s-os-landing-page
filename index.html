@@ -598,7 +598,7 @@ h2 .grad{
 .step-body{font-size:.88rem;color:var(--text-dim);line-height:1.65}
 
 /* ═══ PRICING ═══ */
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.price-grid{display:flex;flex-direction:column;max-width:600px;margin:0 auto;gap:1.5rem}
 .price-card{
   position:relative;
   background:linear-gradient(180deg,rgba(20,34,62,.55),rgba(10,18,34,.7));
@@ -964,7 +964,6 @@ footer{
 }
 @media (max-width:768px){
   .cards{grid-template-columns:1fr;max-width:480px;margin:0 auto}
-  .price-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}
   .values-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}
   .steps{grid-template-columns:1fr;gap:2.5rem}
   .steps::before{display:none}
@@ -1053,9 +1052,8 @@ footer{
   .stat-cell{padding:1.5rem 1.25rem}
   /* Partners */
   .partners-track{gap:1.5rem}
-  /* Cards / price / values full width on mobile */
+  /* Cards / values full width on mobile */
   .cards{max-width:100%}
-  .price-grid{max-width:100%}
   .values-grid{max-width:100%}
   /* Steps */
   .step{padding:0 1rem}
@@ -1108,6 +1106,28 @@ footer{
   .feat-visual .mock{padding:.9rem .8rem}
 }
 
+/* ═══ DEVIS FORM ═══ */
+.devis-form-wrap{
+  max-width:560px;margin:0 auto;
+  background:rgba(20,34,62,.55);
+  backdrop-filter:blur(18px) saturate(140%);
+  border:1px solid var(--border-2);
+  border-radius:20px;padding:2.5rem 2rem;
+}
+.devis-form-b2g{border-color:var(--b2g-border);box-shadow:0 0 60px rgba(0,209,255,.06)}
+.devis-form-pro{border-color:var(--pro-border);box-shadow:0 0 60px rgba(255,215,0,.06)}
+.devis-form-b2g .form-input:focus,
+.devis-form-b2g .form-select:focus,
+.devis-form-b2g .form-textarea:focus{border-color:var(--b2g);box-shadow:0 0 0 3px var(--b2g-dim)}
+.devis-form-pro .form-input:focus,
+.devis-form-pro .form-select:focus,
+.devis-form-pro .form-textarea:focus{border-color:var(--pro);box-shadow:0 0 0 3px var(--pro-dim)}
+.btn-submit-b2g{background:var(--b2g);color:#060d1a;box-shadow:0 0 28px var(--b2g-glow)}
+.btn-submit-pro{background:var(--pro);color:#1a1300;box-shadow:0 0 28px var(--pro-glow)}
+@media (max-width:767px){
+  .devis-form-wrap{padding:1.5rem 1.25rem}
+}
+
 /* ═══ SMALL MOBILE EXTRA — 479px ═══ */
 @media (max-width:479px){
   /* Hero padding allégé */
@@ -1146,10 +1166,10 @@ footer{
   <span class="nav-divider"></span>
   <div class="nav-links" id="nav-links">
     <button class="nav-item active" data-page="home" onclick="showPage('home')">Accueil</button>
-    <button class="nav-item" data-page="home" onclick="showPage('home');scrollToPricing()">Tarifs</button>
+    <button class="nav-item" data-page="home" onclick="scrollToPricing()">Tarifs</button>
     <button class="nav-item" data-page="about" onclick="showPage('about')">Notre histoire</button>
     <button class="nav-item" data-page="contact" onclick="showPage('contact')">Contact</button>
-    <a href="https://s-os.streamlit.app" class="btn-primary nav-cta-mobile" target="_blank" rel="noopener noreferrer">
+    <a href="https://s-os.streamlit.app" class="btn-primary nav-cta-mobile" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">
       <span>Démarrer gratuitement</span><span class="arr">→</span>
     </a>
   </div>
@@ -1876,31 +1896,111 @@ footer{
 
     <!-- B2G Pricing -->
     <div class="b2g-only">
-      <div class="devis-block cyan reveal">
-        <div class="devis-eyebrow">Collectivités</div>
-        <div class="devis-title cyan">Tarification sur devis</div>
-        <p class="devis-sub">
-          Chaque commune est unique. Contactez-nous pour une démonstration
-          personnalisée et un devis adapté à votre parc, vos sites et vos enjeux PCAET.
-        </p>
-        <a href="mailto:souchet.os@outlook.fr?subject=Demande%20d%C3%A9mo%20S-OS%20Collectivit%C3%A9" class="btn-plan b2g" style="display:inline-block;padding:.95rem 2.2rem;width:auto">
-          Demander une démo →
-        </a>
+      <div class="devis-form-wrap devis-form-b2g reveal">
+        <div style="text-align:center;margin-bottom:1.75rem">
+          <div class="devis-eyebrow">Collectivités · Tarification sur devis</div>
+          <div class="devis-title cyan">Parlons de votre projet</div>
+          <p class="devis-sub" style="margin-bottom:0">
+            Chaque collectivité est unique. Décrivez votre besoin et nous vous recontactons sous 24h.
+          </p>
+        </div>
+        <form action="https://formspree.io/f/xzdywoqz" method="POST">
+          <input type="hidden" name="profil" value="Collectivité">
+          <input type="hidden" name="_subject" value="Demande devis Collectivité S-OS ⚡">
+          <input type="text" name="_gotcha" style="display:none">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="dg-prenom">Prénom</label>
+              <input class="form-input" type="text" id="dg-prenom" name="prenom" placeholder="Marie" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dg-nom">Nom</label>
+              <input class="form-input" type="text" id="dg-nom" name="nom" placeholder="Dupont" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dg-email">Email</label>
+            <input class="form-input" type="email" id="dg-email" name="email" placeholder="vous@mairie.fr" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dg-orga">Commune / Organisation</label>
+            <input class="form-input" type="text" id="dg-orga" name="organisation" placeholder="Mairie de…" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="dg-tel">Téléphone <span style="font-weight:400;text-transform:none;letter-spacing:0">(optionnel)</span></label>
+              <input class="form-input" type="tel" id="dg-tel" name="telephone" placeholder="06 12 34 56 78">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dg-batiments">Nombre de bâtiments</label>
+              <input class="form-input" type="number" id="dg-batiments" name="batiments" min="1" placeholder="ex. 5">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dg-message">Votre besoin</label>
+            <textarea class="form-textarea" id="dg-message" name="message" rows="4" placeholder="Décrivez votre parc, vos objectifs PCAET, vos contraintes…" required></textarea>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="dg-rgpd" name="rgpd" required>
+            <label for="dg-rgpd">J'accepte que mes données soient utilisées pour traiter ma demande. <a href="#" onclick="showPage('confidentialite');return false;" style="color:var(--b2g)">Politique de confidentialité</a></label>
+          </div>
+          <button type="submit" class="btn-submit btn-submit-b2g">Envoyer ma demande →</button>
+        </form>
       </div>
     </div>
 
     <!-- Pro Pricing -->
     <div class="pro-only">
-      <div class="devis-block amber reveal">
-        <div class="devis-eyebrow">Professionnels</div>
-        <div class="devis-title amber">Tarification sur devis</div>
-        <p class="devis-sub">
-          Volume, fonctionnalités avancées, intégrations API, white label,
-          support dédié. Parlons-en — devis sur mesure sous 48h.
-        </p>
-        <a href="mailto:souchet.os@outlook.fr?subject=Demande%20S-OS%20Pro" class="btn-plan pro" style="display:inline-block;padding:.95rem 2.2rem;width:auto">
-          Nous contacter →
-        </a>
+      <div class="devis-form-wrap devis-form-pro reveal">
+        <div style="text-align:center;margin-bottom:1.75rem">
+          <div class="devis-eyebrow">Professionnels · Tarification sur devis</div>
+          <div class="devis-title amber">Parlons de votre projet</div>
+          <p class="devis-sub" style="margin-bottom:0">
+            Chaque besoin professionnel est unique. Décrivez vos installations et nous vous recontactons sous 24h.
+          </p>
+        </div>
+        <form action="https://formspree.io/f/xzdywoqz" method="POST">
+          <input type="hidden" name="profil" value="Pro">
+          <input type="hidden" name="_subject" value="Demande devis Pro S-OS ⚡">
+          <input type="text" name="_gotcha" style="display:none">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="dp-prenom">Prénom</label>
+              <input class="form-input" type="text" id="dp-prenom" name="prenom" placeholder="Jean" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dp-nom">Nom</label>
+              <input class="form-input" type="text" id="dp-nom" name="nom" placeholder="Martin" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dp-email">Email</label>
+            <input class="form-input" type="email" id="dp-email" name="email" placeholder="vous@entreprise.fr" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dp-orga">Entreprise / Organisation</label>
+            <input class="form-input" type="text" id="dp-orga" name="organisation" placeholder="Nom de votre entreprise" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="dp-tel">Téléphone <span style="font-weight:400;text-transform:none;letter-spacing:0">(optionnel)</span></label>
+              <input class="form-input" type="tel" id="dp-tel" name="telephone" placeholder="06 12 34 56 78">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="dp-installations">Nb d'installations</label>
+              <input class="form-input" type="number" id="dp-installations" name="installations" min="1" placeholder="ex. 12">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dp-message">Votre besoin</label>
+            <textarea class="form-textarea" id="dp-message" name="message" rows="4" placeholder="Volume, fonctionnalités, intégrations, white label…" required></textarea>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="dp-rgpd" name="rgpd" required>
+            <label for="dp-rgpd">J'accepte que mes données soient utilisées pour traiter ma demande. <a href="#" onclick="showPage('confidentialite');return false;" style="color:var(--pro)">Politique de confidentialité</a></label>
+          </div>
+          <button type="submit" class="btn-submit btn-submit-pro">Envoyer ma demande →</button>
+        </form>
       </div>
     </div>
   </section>
@@ -2384,6 +2484,7 @@ footer{
     if(btn){ btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
     document.body.style.overflow = '';
   }
+  window.closeMobileMenu = closeMobileMenu;
   window.toggleMobileMenu = function(){
     var links = document.getElementById('nav-links');
     var btn = document.getElementById('nav-hamburger');
@@ -2411,10 +2512,17 @@ footer{
     showPage(prevPage && prevPage !== currentPage ? prevPage : 'home');
   };
   window.scrollToPricing = function(){
-    setTimeout(function(){
+    closeMobileMenu();
+    if(currentPage !== 'home'){
+      showPage('home');
+      setTimeout(function(){
+        var el = document.getElementById('pricing');
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      }, 400);
+    } else {
       var el = document.getElementById('pricing');
       if(el) window.scrollTo({top: el.offsetTop - 80, behavior:'smooth'});
-    }, 120);
+    }
   };
 
   /* SWITCHER */
@@ -2433,8 +2541,8 @@ footer{
     btnB2g.setAttribute('aria-pressed', mode === 'b2g');
     btnPro.setAttribute('aria-pressed', mode === 'pro');
     document.querySelectorAll('.b2c-only').forEach(function(el){el.style.display = mode === 'b2c' ? '' : 'none'});
-    document.querySelectorAll('.b2g-only').forEach(function(el){el.style.display = mode === 'b2g' ? '' : 'none'});
-    document.querySelectorAll('.pro-only').forEach(function(el){el.style.display = mode === 'pro' ? '' : 'none'});
+    document.querySelectorAll('.b2g-only').forEach(function(el){el.style.display = mode === 'b2g' ? 'block' : 'none'});
+    document.querySelectorAll('.pro-only').forEach(function(el){el.style.display = mode === 'pro' ? 'block' : 'none'});
     setTimeout(activateReveal, 50);
     try{ localStorage.setItem('sos-mode', mode); }catch(e){}
   };
