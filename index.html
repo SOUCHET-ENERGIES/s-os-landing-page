@@ -984,6 +984,152 @@ footer{
   .cta-box{padding:3rem 1.2rem}
   .scene{aspect-ratio:1/1.05}
 }
+
+/* ═══ HAMBURGER ═══ */
+.nav-hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;
+  padding:8px;margin-left:.2rem;flex-shrink:0;
+  position:relative;z-index:400;
+}
+.nav-hamburger span{
+  display:block;width:22px;height:2px;background:#fff;
+  border-radius:2px;transition:transform .3s var(--ease),opacity .3s var(--ease);
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ═══ MOBILE — 768px extra fixes ═══ */
+@media (max-width:768px){
+  /* Hamburger visible */
+  .nav-hamburger{display:flex}
+  /* Nav overlay */
+  .nav-links.open{
+    display:flex !important;
+    flex-direction:column;
+    position:fixed;top:0;left:0;
+    width:100%;height:100dvh;
+    background:rgba(6,13,26,.97);
+    backdrop-filter:blur(24px) saturate(140%);
+    -webkit-backdrop-filter:blur(24px) saturate(140%);
+    z-index:300;
+    align-items:center;justify-content:center;
+    gap:.4rem;padding:2rem 1.5rem;
+  }
+  .nav-links.open .nav-item{
+    font-size:1.2rem;font-weight:700;
+    padding:1rem 2.5rem;border-radius:14px;
+    width:100%;max-width:300px;text-align:center;
+    color:var(--text-dim);
+  }
+  .nav-links.open .nav-item:hover,
+  .nav-links.open .nav-item.active{background:rgba(255,255,255,.07);color:#fff}
+  /* Hero scene */
+  .hero-right{min-height:0}
+  .hero-right .scene{aspect-ratio:4/3}
+  .kpi-card.k3{display:none}
+  .kpi-card{min-width:110px;padding:.6rem .75rem}
+  .kpi-value{font-size:1rem}
+  .kpi-trend{font-size:.6rem}
+  /* CTA stack */
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-ghost{justify-content:center}
+  /* Switcher */
+  .switcher-wrap{padding:3.5rem 1.25rem .5rem}
+  .switcher{flex-wrap:wrap;width:100%;max-width:320px}
+  .sw-btn{font-size:.8rem;padding:.6rem 1rem;flex:1;justify-content:center;min-width:80px}
+  /* About */
+  .about-hero{padding:7rem 1.25rem 2rem}
+  /* Legal tables scroll */
+  .legal-page{padding:6rem 1rem 3rem}
+  .legal-page table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+  /* Devis */
+  .devis-block{padding:2rem 1.25rem}
+  .devis-title{font-size:1.5rem}
+  /* Footer bottom */
+  .footer-bottom{flex-direction:column;text-align:center;gap:.5rem}
+  /* Stats */
+  .stat-cell{padding:1.5rem 1.25rem}
+  /* Partners */
+  .partners-track{gap:1.5rem}
+  /* Cards / price / values full width on mobile */
+  .cards{max-width:100%}
+  .price-grid{max-width:100%}
+  .values-grid{max-width:100%}
+  /* Steps */
+  .step{padding:0 1rem}
+}
+/* ═══ SMALL MOBILE — 480px extra fixes ═══ */
+@media (max-width:480px){
+  .cta-meta{gap:.5rem;font-size:.63rem;flex-wrap:wrap}
+  h2{font-size:1.75rem}
+  .sec-intro{font-size:.92rem}
+  .hero-pill{font-size:.62rem;padding:.35rem .8rem}
+  .kpi-card.k1{left:2%}
+  .kpi-card.k2{right:2%}
+  .contact-section{padding:7rem 1rem 3rem}
+  .about-founder{padding:1.8rem 1.25rem}
+  .footer-bottom{font-size:.65rem}
+  .devis-block{padding:1.5rem 1rem}
+  .cta-box p{font-size:.9rem}
+}
+
+/* ═══ CTA MOBILE DANS OVERLAY NAV ═══ */
+.nav-cta-mobile{display:none}
+
+/* ═══ MOBILE EXTRA FIXES — 767px ═══ */
+@media (max-width:767px){
+  /* Btn-nav réduit dans la pill pour éviter l'overflow */
+  .btn-nav{padding:.48rem .85rem;font-size:.77rem}
+  .btn-nav .arr{display:none}
+
+  /* CTA visible seulement dans l'overlay ouvert */
+  .nav-links.open .nav-cta-mobile{
+    display:inline-flex;
+    margin-top:1.5rem;
+    font-size:.95rem;
+    padding:.85rem 1.8rem;
+  }
+
+  /* Mock grid : 3 colonnes → 2 colonnes dans les cartes */
+  .mock-grid{grid-template-columns:1fr 1fr}
+  /* La 3ème cellule prend toute la largeur */
+  .mock-grid .mock-stat:nth-child(3){grid-column:1 / -1}
+
+  /* Mock gauge row : stack vertical */
+  .mock-gauge-row{grid-template-columns:1fr}
+
+  /* Partners : retrait du flex-wrap forcé + gap réduit */
+  .partners-track{flex-wrap:wrap;gap:1.2rem;justify-content:center}
+  .partner-logo{font-size:.95rem}
+
+  /* Feat-split : moins de padding dans les mocks */
+  .feat-visual .mock{padding:.9rem .8rem}
+}
+
+/* ═══ SMALL MOBILE EXTRA — 479px ═══ */
+@media (max-width:479px){
+  /* Hero padding allégé */
+  #hero{padding:5.5rem 1rem 2.5rem}
+
+  /* Nav pill encore plus compacte */
+  .btn-nav{padding:.4rem .65rem;font-size:.72rem}
+
+  /* Mock grid reste 2 cols */
+  .mock-grid{grid-template-columns:1fr 1fr}
+
+  /* Partners encore plus petits */
+  .partners-track{gap:.8rem}
+  .partner-logo{font-size:.82rem}
+
+  /* Gauge ring plus petite */
+  .gauge-ring{width:85px;height:85px}
+
+  /* Steps : padding réduit */
+  .step{padding:0 .5rem}
+  .step-num{width:52px;height:52px;font-size:1.1rem}
+}
 </style>
 </head>
 <body>
@@ -998,12 +1144,20 @@ footer{
     <span>S<span class="dash">-</span>OS</span>
   </a>
   <span class="nav-divider"></span>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <button class="nav-item active" data-page="home" onclick="showPage('home')">Accueil</button>
     <button class="nav-item" data-page="home" onclick="showPage('home');scrollToPricing()">Tarifs</button>
     <button class="nav-item" data-page="about" onclick="showPage('about')">Notre histoire</button>
     <button class="nav-item" data-page="contact" onclick="showPage('contact')">Contact</button>
+    <a href="https://s-os.streamlit.app" class="btn-primary nav-cta-mobile" target="_blank" rel="noopener noreferrer">
+      <span>Démarrer gratuitement</span><span class="arr">→</span>
+    </a>
   </div>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <a href="https://s-os.streamlit.app" class="btn-nav" target="_blank" rel="noopener noreferrer">
     Démarrer <span class="arr">→</span>
   </a>
@@ -1189,7 +1343,7 @@ footer{
     </div>
 
     <!-- Partners marquee -->
-    <div class="partners" style="height: 67px">
+    <div class="partners">
       <div class="partners-label">Compatible avec les principaux onduleurs</div>
       <div class="partners-track">
         <div class="partner-logo"><span class="pl-mark"></span>Enphase</div>
@@ -2220,7 +2374,27 @@ footer{
   /* ROUTER */
   var currentPage = 'home';
   var prevPage = 'home';
+
+  /* MOBILE MENU */
+  function closeMobileMenu(){
+    var links = document.getElementById('nav-links');
+    var btn = document.getElementById('nav-hamburger');
+    if(!links) return;
+    links.classList.remove('open');
+    if(btn){ btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+    document.body.style.overflow = '';
+  }
+  window.toggleMobileMenu = function(){
+    var links = document.getElementById('nav-links');
+    var btn = document.getElementById('nav-hamburger');
+    if(!links) return;
+    var isOpen = links.classList.toggle('open');
+    if(btn){ btn.classList.toggle('open', isOpen); btn.setAttribute('aria-expanded', String(isOpen)); }
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  };
+
   window.showPage = function(name){
+    closeMobileMenu();
     prevPage = currentPage;
     currentPage = name;
     document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
@@ -2292,6 +2466,13 @@ footer{
     try{ saved = localStorage.getItem('sos-mode'); }catch(e){}
     if(saved === 'b2g' || saved === 'pro') setMode(saved);
     activateReveal();
+    /* Close mobile overlay when clicking its background */
+    var navLinks = document.getElementById('nav-links');
+    if(navLinks){
+      navLinks.addEventListener('click', function(e){
+        if(e.target === navLinks) closeMobileMenu();
+      });
+    }
   });
 })();
 </script>
