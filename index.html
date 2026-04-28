@@ -82,9 +82,9 @@ button{font-family:inherit}
 
 /* ═══ NAV — floating pill premium ═══ */
 #nav{
-  position:fixed;top:1.1rem;left:50%;transform:translateX(-50%);z-index:200;
+  position:fixed;top:.75rem;left:50%;transform:translateX(-50%);z-index:200;
   display:flex;align-items:center;gap:.5rem;
-  padding:.45rem .55rem .45rem 1.25rem;
+  padding:.45rem .55rem .45rem 1rem;
   background:rgba(10,22,40,.6);
   backdrop-filter:blur(24px) saturate(140%);
   -webkit-backdrop-filter:blur(24px) saturate(140%);
@@ -92,10 +92,10 @@ button{font-family:inherit}
   border-radius:60px;
   box-shadow:
     0 1px 0 rgba(255,255,255,.05) inset,
-    0 12px 40px rgba(0,0,0,.45),
-    0 0 0 1px rgba(0,255,133,.04);
-  transition:padding var(--dur) var(--ease), background var(--dur) var(--ease);
-  max-width:calc(100vw - 2rem);
+    0 12px 40px rgba(0,0,0,.45);
+  width:calc(100vw - 1.5rem);
+  max-width:900px;
+  box-sizing:border-box;
 }
 .nav-logo{
   font-size:1.05rem;font-weight:900;letter-spacing:-.04em;color:#fff;
@@ -1104,6 +1104,28 @@ footer{
 
   /* Feat-split : moins de padding dans les mocks */
   .feat-visual .mock{padding:.9rem .8rem}
+
+  /* Hero mobile — cache scène, centre texte */
+  .hero-right{display:none !important}
+  .hero-wrap{text-align:center}
+  .hero-cta{justify-content:center}
+  #hero{min-height:auto;padding:6rem 1.25rem 3rem}
+  h1.hero-title{font-size:2.2rem}
+  .hero-sub{font-size:.95rem}
+
+  /* Stats band : 4 colonnes → 2 colonnes */
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .stat-cell:nth-child(2){border-right:none}
+  .stat-cell:nth-child(3){border-top:1px solid var(--border);border-bottom:none}
+
+  /* Feat-split : cache les mockups */
+  .feat-split{grid-template-columns:1fr}
+  .feat-visual{display:none}
+  .feat-text > p{max-width:100%}
+
+  /* Footer mobile */
+  footer{padding:2rem 1.25rem 2rem}
+  .footer-inner{gap:1.5rem}
 }
 
 /* ═══ DEVIS FORM ═══ */
@@ -1360,7 +1382,6 @@ footer{
           </div>
         </div>
       </div>
-    </div>
 
     <!-- Partners marquee -->
     <div class="partners">
