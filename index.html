@@ -1172,6 +1172,59 @@ footer{
   .step{padding:0 .5rem}
   .step-num{width:52px;height:52px;font-size:1.1rem}
 }
+
+@media (max-width: 767px) {
+  /* Form-row en colonne sur mobile */
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Contact grid en colonne */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Switcher profils wrap sur mobile */
+  .profile-switcher {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* Section about/histoire */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Values grid */
+  .values-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Padding général sections */
+  section {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablette — pricing 1 colonne centrée */
+  .price-grid {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Footer tablette — 2 colonnes */
+  .footer-inner {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Cards tablette — 2 colonnes */
+  .cards {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
 </style>
 </head>
 <body>
