@@ -970,13 +970,13 @@ footer{
   .steps::before{display:none}
   .nav-links{display:none}
   .nav-divider{display:none}
-  #nav{padding:.4rem .4rem .4rem 1rem}
+  #nav{padding:.4rem .4rem .4rem 1rem;display:flex;justify-content:space-between;align-items:center}
   .form-row{grid-template-columns:1fr}
   .stats-inner{grid-template-columns:1fr}
   .stat-cell{border-right:none;border-bottom:1px solid var(--border)}
   .stat-cell:last-child{border-bottom:none}
   .footer-inner{grid-template-columns:1fr}
-  .section{padding:4rem 1.25rem}
+  .section{padding:4rem 1.5rem;width:100%}
   #hero{padding:7rem 1.25rem 3rem;flex-direction:column;align-items:center}
   .hero-wrap{width:100%;max-width:100%}
   .hero-right{width:100%;max-width:100%;min-height:auto;margin-top:2rem}
@@ -1128,7 +1128,9 @@ footer{
 
   /* Feat-split : cache les mockups */
   .feat-split{grid-template-columns:1fr}
+  .feat-split.reverse{grid-template-columns:1fr}
   .feat-visual{display:none}
+  .feat-text{max-width:100%;text-align:left}
   .feat-text > p{max-width:100%}
 
   /* Footer mobile */
