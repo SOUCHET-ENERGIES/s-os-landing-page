@@ -598,7 +598,7 @@ h2 .grad{
 .step-body{font-size:.88rem;color:var(--text-dim);line-height:1.65}
 
 /* ═══ PRICING ═══ */
-.price-grid{display:flex;flex-direction:column;max-width:600px;margin:0 auto;gap:1.5rem}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;max-width:1100px;margin:0 auto}
 .price-card{
   position:relative;
   background:linear-gradient(180deg,rgba(20,34,62,.55),rgba(10,18,34,.7));
@@ -1219,9 +1219,9 @@ footer{
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  /* Tablette — pricing 1 colonne centrée */
+  /* Tablette — pricing 3 colonnes, max-width adapté */
   .price-grid {
-    max-width: 500px;
+    max-width: 900px;
     margin: 0 auto;
   }
 
@@ -1234,6 +1234,76 @@ footer{
   .cards {
     grid-template-columns: 1fr 1fr !important;
   }
+}
+
+/* ═══ WAITLIST ═══ */
+.wl-section{
+  position:relative;z-index:2;
+  padding:6rem 1.5rem;
+  text-align:center;
+  border-top:1px solid var(--border);
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,255,133,.06) 0%,transparent 65%);
+}
+.wl-inner{max-width:620px;margin:0 auto}
+.wl-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--b2c-dim);border:1px solid var(--b2c-border);
+  color:var(--b2c);font-family:var(--mono);font-size:.7rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.3rem 1rem;border-radius:50px;margin-bottom:1.6rem;
+}
+.wl-section h2{
+  font-size:clamp(2rem,4vw,2.8rem);font-weight:800;
+  letter-spacing:-.04em;line-height:1.1;color:#f8fafc;
+  margin-bottom:.9rem;
+}
+.wl-section > .wl-inner > p{
+  font-size:1rem;color:var(--text-dim);line-height:1.7;margin-bottom:2rem;
+}
+.wl-form{
+  display:flex;gap:.5rem;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border-2);
+  border-radius:14px;padding:.35rem .35rem .35rem .9rem;
+  transition:border-color var(--dur);
+}
+.wl-form:focus-within{border-color:#1A7F5A;box-shadow:0 0 0 3px rgba(26,127,90,.15)}
+.wl-input{
+  flex:1;background:none;border:none;outline:none;
+  font-family:inherit;font-size:.95rem;color:var(--text);
+  min-width:0;
+}
+.wl-input::placeholder{color:var(--text-muted)}
+.wl-btn{
+  flex-shrink:0;
+  background:var(--b2c);color:#060d1a;
+  font-family:inherit;font-weight:800;font-size:.875rem;
+  padding:.65rem 1.3rem;border-radius:10px;border:none;cursor:pointer;
+  display:flex;align-items:center;gap:.4rem;
+  transition:opacity var(--dur),transform var(--dur),box-shadow var(--dur);
+  box-shadow:0 0 20px var(--b2c-glow);white-space:nowrap;
+}
+.wl-btn:hover:not(:disabled){opacity:.86;transform:translateY(-1px)}
+.wl-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.wl-msg{
+  margin-top:.85rem;font-size:.88rem;font-weight:500;
+  min-height:1.2em;transition:opacity .3s;
+}
+.wl-ok{color:var(--b2c)}
+.wl-warn{color:#FFD700}
+.wl-err{color:#ff6b6b}
+/* Hero inline form — adapté au hero-cta row */
+.hero-cta .wl-form{
+  background:rgba(255,255,255,.05);
+  border-color:var(--border-2);
+  flex:1;max-width:420px;
+}
+.hero-cta .wl-msg{margin-top:.5rem;text-align:left}
+@media(max-width:768px){
+  .wl-form{flex-direction:column;padding:.6rem}
+  .wl-btn{justify-content:center;width:100%}
+  .hero-cta .wl-form{max-width:100%}
+  .wl-section{padding:4rem 1.25rem}
 }
 </style>
 </head>
@@ -1291,15 +1361,17 @@ footer{
           projection de <b>ROI sur 10 ans</b> et pilotage Smart City —
           dans une seule interface conçue pour les particuliers et les collectivités.
         </p>
-        <div class="hero-cta">
+        <div class="hero-cta" style="flex-wrap:wrap;gap:1rem">
           <a href="https://s-os.streamlit.app" class="btn-primary" target="_blank" rel="noopener noreferrer">
             <span>Démarrer gratuitement</span>
             <span class="arr">→</span>
           </a>
-          <a href="#how" class="btn-ghost" onclick="document.getElementById('how-anchor')?.scrollIntoView({behavior:'smooth'});return false;">
-            Voir la démo
-          </a>
+          <form class="wl-form" id="wl-hero" onsubmit="submitWaitlist(event,'hero')" style="flex:1;min-width:240px">
+            <input type="email" class="wl-input" placeholder="Votre email..." required autocomplete="email">
+            <button type="submit" class="wl-btn">Rejoindre la bêta <span class="arr">→</span></button>
+          </form>
         </div>
+        <div class="wl-msg" id="wl-hero-msg"></div>
         <div class="cta-meta">
           <span><span class="dot"></span>Sans CB</span>
           <span><span class="dot"></span>RGPD conforme</span>
@@ -2518,6 +2590,20 @@ footer{
   </div>
 </div><!-- /page-confidentialite -->
 
+<!-- ─── WAITLIST ─── -->
+<section class="wl-section" id="waitlist">
+  <div class="wl-inner">
+    <div class="wl-badge">⚡ Accès bêta gratuit · Sans engagement</div>
+    <h2>Soyez parmi les premiers.</h2>
+    <p>Le logiciel est en bêta privée en Bretagne. Inscrivez-vous pour être notifié en priorité à l'ouverture.</p>
+    <form class="wl-form" id="wl-main" onsubmit="submitWaitlist(event,'main')">
+      <input type="email" class="wl-input" placeholder="Votre email..." required autocomplete="email">
+      <button type="submit" class="wl-btn">Rejoindre la bêta <span class="arr">→</span></button>
+    </form>
+    <div class="wl-msg" id="wl-main-msg"></div>
+  </div>
+</section>
+
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-inner">
@@ -2651,6 +2737,52 @@ footer{
       c.style.setProperty('--mx', mx + '%');
     });
   });
+
+  /* WAITLIST */
+  var SUPABASE_URL = 'https://mdlartzzlqdnoqkyekso.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kbGFydHp6bHFkbm9xa3lla3NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNjI0NzYsImV4cCI6MjA5MTczODQ3Nn0.Q5cq7iCx28Nt271cm-EcSwT5uuQ4_x6PGQLELWm9LIY';
+
+  window.submitWaitlist = async function(e, formId){
+    e.preventDefault();
+    var form = e.target;
+    var input = form.querySelector('.wl-input');
+    var btn = form.querySelector('.wl-btn');
+    var msgEl = document.getElementById('wl-' + formId + '-msg');
+    var email = input.value.trim();
+
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+
+    btn.disabled = true;
+    var origHTML = btn.innerHTML;
+    btn.textContent = 'Envoi…';
+    if(msgEl){ msgEl.className = 'wl-msg'; msgEl.textContent = ''; }
+
+    try{
+      var res = await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email: email, source: 'landing' })
+      });
+      if(res.status === 201 || (res.ok && res.status !== 409)){
+        if(msgEl){ msgEl.className = 'wl-msg wl-ok'; msgEl.textContent = '✓ Inscription confirmée ! Vous serez notifié en priorité.'; }
+        input.value = '';
+      } else if(res.status === 409){
+        if(msgEl){ msgEl.className = 'wl-msg wl-warn'; msgEl.textContent = 'Vous êtes déjà sur la liste !'; }
+      } else {
+        if(msgEl){ msgEl.className = 'wl-msg wl-err'; msgEl.textContent = 'Une erreur est survenue. Réessayez dans un instant.'; }
+      }
+    } catch(err){
+      if(msgEl){ msgEl.className = 'wl-msg wl-err'; msgEl.textContent = 'Erreur réseau. Vérifiez votre connexion.'; }
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = origHTML;
+    }
+  };
 
   /* INIT */
   document.addEventListener('DOMContentLoaded', function(){
