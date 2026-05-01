@@ -598,7 +598,7 @@ h2 .grad{
 .step-body{font-size:.88rem;color:var(--text-dim);line-height:1.65}
 
 /* ═══ PRICING ═══ */
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;max-width:1100px;margin:0 auto}
+.price-grid{gap:1.5rem;align-items:start;max-width:1100px;margin:0 auto}
 .price-card{
   position:relative;
   background:linear-gradient(180deg,rgba(20,34,62,.55),rgba(10,18,34,.7));
@@ -898,6 +898,11 @@ footer{
 .b2c-only{display:block}
 .b2g-only{display:none}
 .pro-only{display:none}
+
+/* .price-grid déclaré APRÈS .b2c-only pour gagner la cascade (même spécificité, source order) */
+@media (min-width:769px){
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+}
 
 /* ═══ DEVIS BLOCK ═══ */
 .devis-block{
@@ -2758,6 +2763,7 @@ footer{
     if(msgEl){ msgEl.className = 'wl-msg'; msgEl.textContent = ''; }
 
     try{
+      console.log('[Waitlist] POST', email);
       var res = await fetch(SUPABASE_URL + '/rest/v1/waitlist', {
         method: 'POST',
         headers: {
@@ -2768,15 +2774,20 @@ footer{
         },
         body: JSON.stringify({ email: email, source: 'landing' })
       });
-      if(res.status === 201 || (res.ok && res.status !== 409)){
+      var bodyText = '';
+      try{ bodyText = await res.text(); } catch(e){}
+      console.log('[Waitlist] status:', res.status, '| body:', bodyText);
+      /* 201 Created ou 204 No Content = succès */
+      if(res.status === 201 || res.status === 204){
         if(msgEl){ msgEl.className = 'wl-msg wl-ok'; msgEl.textContent = '✓ Inscription confirmée ! Vous serez notifié en priorité.'; }
         input.value = '';
       } else if(res.status === 409){
         if(msgEl){ msgEl.className = 'wl-msg wl-warn'; msgEl.textContent = 'Vous êtes déjà sur la liste !'; }
       } else {
-        if(msgEl){ msgEl.className = 'wl-msg wl-err'; msgEl.textContent = 'Une erreur est survenue. Réessayez dans un instant.'; }
+        if(msgEl){ msgEl.className = 'wl-msg wl-err'; msgEl.textContent = 'Erreur ' + res.status + '. Réessayez dans un instant.'; }
       }
     } catch(err){
+      console.error('[Waitlist] fetch error:', err);
       if(msgEl){ msgEl.className = 'wl-msg wl-err'; msgEl.textContent = 'Erreur réseau. Vérifiez votre connexion.'; }
     } finally {
       btn.disabled = false;
